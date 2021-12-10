@@ -1,0 +1,26 @@
+{
+	"name": "02_crawler",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "ts-node ./src/index.ts",
+		"serve": "tsc --watch"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/cheerio": "^0.22.30",
+		"@types/lodash": "^4.14.178",
+		"@types/superagent": "^4.1.13",
+		"lodash": "^4.17.21",
+		"ts-node": "^10.4.0",
+		"typescript": "^4.5.2"
+	},
+	"dependencies": {
+		"cheerio": "^1.0.0-rc.10",
+		"superagent": "^6.1.0"
+	}
+}
