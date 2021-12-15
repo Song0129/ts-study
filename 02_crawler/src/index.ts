@@ -3,25 +3,17 @@ import cheerio from 'cheerio';
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
+import MyAnalyzer from './analyzer';
 
-interface Slide {
-	id: number;
-	image: string;
-	link: string;
-}
-
-interface SlideData {
-	time: number;
-	data: Slide[];
-}
-
-interface Content {
-	[propName: number]: Slide[];
+// MyAnalyzer实例的数据类型
+// 要求必须有analyze方法
+export interface Analyzer {
+	analyze: (html: string, filePath: string) => string;
 }
 
 class Crawler {
-	private secret = 'secretKey';
-	private url = `https://song-api.only0129.top/slides`;
+	// 定义文件路径
+	private filePath = path.resolve(__dirname, '../data/data.json');
 
 	// 获取数据
 	async getHtml() {
@@ -30,38 +22,25 @@ class Crawler {
 		return result.text;
 	}
 
-	// 分析组装数据
-	analyzerData(html: string) {
-		// console.log(html);
-		const data = JSON.parse(html);
-		return { time: new Date().getTime(), data: data.data };
-	}
-
-	// 获取文件数据、添加数据
-	getJsonContent(slideData: SlideData) {
-		const filePath = path.resolve(__dirname, '../data/data.json');
-		let fileContent: Content = {};
-		if (fs.existsSync(filePath)) {
-			fileContent = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-		}
-		fileContent[slideData.time] = slideData.data;
-		return fileContent;
-	}
-
 	// 写入数据
 	async initSpiderProcess() {
-		const filePath = path.resolve(__dirname, '../data/data.json');
+		// 获取数据
 		const html = await this.getHtml();
-		const data = this.analyzerData(html);
-		const fileContent = this.getJsonContent(data);
-		// console.log(data);
-		fs.writeFileSync(filePath, JSON.stringify(fileContent));
+		// 获取组合数据，拼接原有数据
+		const fileContent = this.analyzer.analyze(html, this.filePath);
+		// 数据写入
+		fs.writeFileSync(this.filePath, fileContent);
 	}
 
-	constructor() {
+	constructor(private url: string, private analyzer: Analyzer) {
 		this.initSpiderProcess();
 	}
 }
 
-const crawler = new Crawler();
-console.log(crawler);
+const secret = 'secretKey';
+const url = `https://song-api.only0129.top/slides`;
+
+// 实例化分析类
+const analyzer = new MyAnalyzer();
+// 实例化爬虫类
+new Crawler(url, analyzer);
