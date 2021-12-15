@@ -16,14 +16,14 @@ class Crawler {
 	private filePath = path.resolve(__dirname, '../data/data.json');
 
 	// 获取数据
-	private async getHtml() {
+	async getHtml() {
 		const result = await superagent.get(this.url);
 		// console.log(result.text);
 		return result.text;
 	}
 
 	// 写入数据
-	private async initSpiderProcess() {
+	async initSpiderProcess() {
 		// 获取数据
 		const html = await this.getHtml();
 		// 获取组合数据，拼接原有数据
@@ -41,6 +41,6 @@ const secret = 'secretKey';
 const url = `https://song-api.only0129.top/slides`;
 
 // 实例化分析类
-const analyzer = MyAnalyzer.getInstance();
+const analyzer = new MyAnalyzer();
 // 实例化爬虫类
 new Crawler(url, analyzer);

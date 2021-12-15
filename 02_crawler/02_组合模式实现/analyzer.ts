@@ -19,15 +19,6 @@ interface Content {
 
 // 重写接口Analyzer  必须有analyze方法
 export default class MyAnalyzer implements Analyzer {
-	private static instance: MyAnalyzer;
-
-	static getInstance() {
-		if (!MyAnalyzer.instance) {
-			MyAnalyzer.instance = new MyAnalyzer();
-		}
-		return MyAnalyzer.instance;
-	}
-
 	// 分析组装数据
 	private analyzerData(html: string) {
 		const data = JSON.parse(html);
@@ -35,7 +26,7 @@ export default class MyAnalyzer implements Analyzer {
 	}
 
 	// 获取文件数据、添加数据
-	private getJsonContent(slideData: SlideData, filePath: string) {
+	getJsonContent(slideData: SlideData, filePath: string) {
 		let fileContent: Content = {};
 		if (fs.existsSync(filePath)) {
 			fileContent = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -49,6 +40,4 @@ export default class MyAnalyzer implements Analyzer {
 		const fileContent = this.getJsonContent(sildeData, filePath);
 		return JSON.stringify(fileContent);
 	}
-
-	private constructor() {}
 }
