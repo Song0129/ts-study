@@ -17,8 +17,7 @@ declare function $(selector: string): JqueryInstance;
 // 	(readyFunc: () => void): viod;
 // 	(selector: string): JqueryInstance;
 // }
-
-declare var $: JQuery;
+// declare var $: JQuery;
 
 // 如何对对象进行类型定义  以及对类进行类型定义  以及命名空间的嵌套
 declare namespace $ {
