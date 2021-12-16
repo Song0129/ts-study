@@ -41,9 +41,6 @@
 // const data = new DataManger<Item>([{ name: 'str' }]);
 // data.getItem(0);
 
-// interface Item {
-// 	name: string;
-// }
 // class DataManger<T extends number | string> {
 // 	constructor(private data: T[]) {}
 // 	getItem(index: number): T {
