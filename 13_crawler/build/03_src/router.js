@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
-var crawler_1 = __importDefault(require("./utils/crawler"));
-var analyzer_1 = __importDefault(require("./utils/analyzer"));
+var crawler_1 = __importDefault(require("./crawler"));
+var analyzer_1 = __importDefault(require("./analyzer"));
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
 var router = (0, express_1.Router)();

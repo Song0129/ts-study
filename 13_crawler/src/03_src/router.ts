@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import Crawler from './utils/crawler';
-import MyAnalyzer from './utils/analyzer';
+import Crawler from './crawler';
+import MyAnalyzer from './analyzer';
 import fs from 'fs';
 import path from 'path';
 
