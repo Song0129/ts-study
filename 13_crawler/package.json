@@ -1,0 +1,35 @@
+{
+	"name": "02_crawler",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev:build": "tsc -w",
+		"dev:start": "nodemon node ./build/index.js",
+		"dev": "tsc && concurrently npm:dev:*"
+	},
+	"nodemonConfig": {
+		"ignore": [
+			"data/*"
+		]
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/cheerio": "^0.22.30",
+		"@types/express": "^4.17.13",
+		"@types/lodash": "^4.14.178",
+		"@types/superagent": "^4.1.13",
+		"concurrently": "^6.4.0",
+		"lodash": "^4.17.21",
+		"ts-node": "^10.4.0",
+		"typescript": "^4.5.2"
+	},
+	"dependencies": {
+		"body-parser": "^1.19.1",
+		"cheerio": "^1.0.0-rc.10",
+		"express": "^4.17.1",
+		"superagent": "^6.1.0"
+	}
+}
